@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Heart-rate : Generate target heart rate table" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Heart-rate</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/AveryE/Heart-Rate">View on GitHub</a>
+
+          <h1 id="project_title">Heart-rate</h1>
+          <h2 id="project_tagline">Generate target heart rate table</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/AveryE/Heart-Rate/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/AveryE/Heart-Rate/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <pre><code>// Declare all variables
+var userAge;
+var restingHeartRate;
+var maximumHeartRate;
+</code></pre>
+
+<p>function getAge() {
+    // Get age from user
+    userAge = document.getElementById("age").value;</p>
+
+<pre><code>// Convert the entered age to number form
+userAge = Number(userAge);
+
+// send alert if not a number
+if (isNaN(userAge)) {
+  alert("Age must be entered in number form");
+}
+</code></pre>
+
+<p>// Send alert if a negative number
+    if (userAge &lt; 0) {
+      alert("Age must be a positive number");
+    }
+}</p>
+
+<p>function calculateMaximumHeartRate() {
+    // Get a Celsius temperature from user
+    maximumHeartRate = 220 - userAge;
+}</p>
+
+<p>function getRestingHeartRate() {
+    // Get resting heart rate from user
+    restingHeartRate = document.getElementById("resting").value;</p>
+
+<pre><code>// Convert to number form
+restingHeartRate = Number(restingHeartRate);
+
+// send alert if not a number
+if (isNaN(restingHeartRate)) {
+  alert("Temperature must be entered in number form");
+}
+
+// Send alert if a negative number
+if (restingHeartRate&lt; 0) {
+  alert("Heart rate must be a positive number");
+}
+</code></pre>
+
+<p>}</p>
+
+<p>function calculateHeartRateReserve()   {
+    heartRateReserve = maximumHeartRate - restingHeartRate;
+}</p>
+
+<p>function calculateTargetHeartRate()   {
+    targetFifty = (heartRateReserve * .5) + restingHeartRate;
+    targetFiftyFive = (heartRateReserve * .55) + restingHeartRate;
+    targetSixty = (heartRateReserve * .6) + restingHeartRate;
+    targetSixtyFive = (heartRateReserve * .65) + restingHeartRate;
+    targetSeventy = (heartRateReserve * .7) + restingHeartRate;
+    targetSeventyFive = (heartRateReserve * .75) + restingHeartRate;
+    targetEighty = (heartRateReserve * .8) + restingHeartRate;
+    targetEightyFive = (heartRateReserve * .85) + restingHeartRate;</p>
+
+<p>}</p>
+
+<p>function outputTargetHeartRateTable()  {</p>
+
+<pre><code>// Create reference on web page for output
+outputToPage = document.getElementById("target");
+
+// Output results to page, or notify of error
+if (isNaN(userAge)) {      
+  outputToPage.innerHTML = "Age not entered in number form"
+          + " so conversion impossible.";
+} else if (isNaN(restingHeartRate)) {      
+  outputToPage.innerHTML = "Heart rate not entered in number form"
+          + " so conversion impossible.";
+} else {
+  outputToPage.innerHTML = "You entered your age as " 
+          + userAge 
+          + " and your resting heart rate as "
+          + restingHeartRate
+          + ".&lt;br /&gt;&lt;br /&gt;"
+          + "Your target heart rate table: "
+          + "&lt;br /&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Percentage of Reserve&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;"
+          + "&lt;td&gt;&lt;b&gt;Target Heart Rate&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;"
+          + "&lt;tr&gt;&lt;td&gt;50%&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;"
+          + targetFifty.toFixed(0)
+          + "&lt;/td&gt;&lt;/tr&gt;"
+          + "&lt;tr&gt;&lt;td&gt;55%&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;"
+          + targetFiftyFive.toFixed(0)
+          + "&lt;/td&gt;&lt;/tr&gt;"
+          + "&lt;tr&gt;&lt;td&gt;60%&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;"
+          + targetSixty.toFixed(0)
+          + "&lt;/td&gt;&lt;/tr&gt;"
+          + "&lt;tr&gt;&lt;td&gt;65%&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;"
+          + targetSixtyFive.toFixed(0)
+          + "&lt;/td&gt;&lt;/tr&gt;"
+          + "&lt;tr&gt;&lt;td&gt;70%&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;"
+          + targetSeventy.toFixed(0)
+          + "&lt;/td&gt;&lt;/tr&gt;"
+          + "&lt;tr&gt;&lt;td&gt;75%&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;"
+          + targetSeventyFive.toFixed(0)
+          +"&lt;/td&gt;&lt;/tr&gt;"
+          + "&lt;tr&gt;&lt;td&gt;80%&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;"
+          + targetEighty.toFixed(0)
+          + "&lt;/td&gt;&lt;/tr&gt;"
+          + "&lt;tr&gt;&lt;td&gt;85%&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;"
+          + targetEightyFive.toFixed(0)
+          +"&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";
+}
+</code></pre>
+
+<p>}
+function heartRate() {
+    getAge();
+    calculateMaximumHeartRate();
+    getRestingHeartRate();
+    calculateHeartRateReserve();
+    calculateTargetHeartRate();
+    outputTargetHeartRateTable();</p>
+
+<pre><code>return false;
+</code></pre>
+
+<p>}</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Heart-rate maintained by <a href="https://github.com/AveryE">AveryE</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
